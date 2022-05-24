@@ -7,22 +7,22 @@ const EMOTIONS = [
   "Asombro",
   "Neutral",
 ];
-EMOTIONS.ENOJO = EMOTIONS[0];
-EMOTIONS.DISGUSTO = EMOTIONS[1];
-EMOTIONS.MIEDO = EMOTIONS[2];
-EMOTIONS.FELICIDAD = EMOTIONS[3];
-EMOTIONS.TRISTEZA = EMOTIONS[4];
-EMOTIONS.ASOMBRO = EMOTIONS[5];
+EMOTIONS.ANGER = EMOTIONS[0];
+EMOTIONS.DISGUST = EMOTIONS[1];
+EMOTIONS.FEAR = EMOTIONS[2];
+EMOTIONS.HAPPINESS = EMOTIONS[3];
+EMOTIONS.SADNESS = EMOTIONS[4];
+EMOTIONS.SURPRISE = EMOTIONS[5];
 EMOTIONS.NEUTRAL = EMOTIONS[6];
 
 const colorMap = {
-  [EMOTIONS.ENOJO]: "#cc002e",
-  [EMOTIONS.DISGUSTO]: "#36c341",
-  [EMOTIONS.MIEDO]: "#9a59a0",
-  [EMOTIONS.FELICIDAD]: "#e1ef00",
-  [EMOTIONS.TRISTEZA]: "#83c0e4",
-  [EMOTIONS.ASOMBRO]: "#FFC0CB",
-  [EMOTIONS.NEUTRAL]: "#FFFFFF",
+  [EMOTIONS.ANGER]: "#cc002e",
+  [EMOTIONS.DISGUST]: "#36c341",
+  [EMOTIONS.FEAR]: "#9a59a0",
+  [EMOTIONS.HAPPINESS]: "#e1ef00",
+  [EMOTIONS.SADNESS]: "#83c0e4",
+  [EMOTIONS.SURPRISE]: "#FFC0CB",
+  [EMOTIONS.NEUTRAL]: "#9c9c9c ",
 };
 
 const MAX = 30;
@@ -36,6 +36,7 @@ class EmoChart {
         return {
           label: emotion,
           fill: false,
+          backgroundColor: colorMap[emotion],
           borderColor: colorMap[emotion],
           borderWidth: 2,
           data: [],
@@ -45,10 +46,10 @@ class EmoChart {
       })
       .concat([
         {
-          label: "Face not detected",
+          label: "Rostro no detectado",
           fill: true,
-          backgroundColor: "rgba(170,170,170,0.6)",
-          borderColor: "rgba(170,170,170,0.6)",
+          backgroundColor: "black",
+          borderColor: "black",
           data: [],
           lineTension: 0,
           pointRadius: 0,
@@ -73,7 +74,7 @@ class EmoChart {
               display: true,
               scaleLabel: {
                 display: true,
-                labelString: "time (sec)",
+                labelString: "Tiempo (seg)",
               },
               ticks: {
                 min: 0,
@@ -87,7 +88,7 @@ class EmoChart {
               display: true,
               scaleLabel: {
                 display: true,
-                labelString: "Emotion level (%)",
+                labelString: "Nivel de emoción (%)",
               },
               ticks: {
                 display: false,
@@ -102,7 +103,7 @@ class EmoChart {
         },
       },
     };
-    Chart.defaults.global.defaultFontColor = "#fff";
+    Chart.defaults.global.defaultFontColor = "#000";
     this._chart = new Chart(ctx, config);
     this._datasets = datasets;
     this._config = config;
@@ -123,12 +124,12 @@ class EmoChart {
 
   update(time, _emotions) {
     const emotions = [
-      _emotions.Enojo,
-      _emotions.Disgusto,
-      _emotions.Miedo,
-      _emotions.Felicidad,
-      _emotions.Tristeza,
-      _emotions.Asombro,
+      _emotions.Angry,
+      _emotions.Disgust,
+      _emotions.Fear,
+      _emotions.Happy,
+      _emotions.Sad,
+      _emotions.Surprise,
       _emotions.Neutral,
     ];
 
