@@ -10,9 +10,8 @@ body {
 }
 
 #videoElement {
-	width: 700px;
+	width: 900px;
 	height: 350px;
-  padding-left: 10%;
 }
   #start_over {
       position: absolute;
@@ -200,11 +199,22 @@ body {
   window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
     emo_div.innerHTML = 'Emoción dominante: ' + evt.detail.output.dominantEmotion;
 
+    
     if(evt.detail.output.dominantEmotion == "Happy"){
-      document.body.style.background = "red";
-    } else if (evt.detail.output.dominantEmotion == "Sad") {
-      document.body.style.background = "blue";
-    }
+      document.getElementById("videoElement").style.backgroundcolor = "yellow";
+    } else if (evt.detail.output.dominantEmotion == "Neutral") {
+      document.getElementById("videoElement").style.background =  "gray";
+    } else if (evt.detail.output.dominantEmotion == "Angry") {
+      document.getElementById("videoElement").style.background =   "red";
+    } else if (evt.detail.output.dominantEmotion == "Surprise") {
+      document.getElementById("videoElement").style.background =  "orange";
+    } else if (evt.detail.output.dominantEmotion == "Fear") {
+      document.getElementById("videoElement").style.background =   "purple";
+    } else if (evt.detail.output.dominantEmotion == "Disgust") {
+      document.getElementById("videoElement").style.background =   "black";
+    } else {
+      document.getElementById("videoElement").style.background =  "blue";
+    } 
 
     // data for the histogram
     const emotions = evt.detail.output.emotion;
